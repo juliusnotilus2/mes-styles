@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "name": "Mon Style Perso (Contours dynamiques)",
+  "name": "Mon Style Perso (Routes Principales au-dessus)",
   "metadata": {},
   "sources": {
     "mymaptiles": {
@@ -188,19 +188,6 @@
       },
       "paint": {
         "line-color": "rgba(216, 214, 214, 1)",
-        "line-opacity": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          12,
-          1,
-          13,
-          0
-        ],
         "line-width": [
           "interpolate",
           [
