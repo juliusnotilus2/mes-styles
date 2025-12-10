@@ -6,7 +6,7 @@
     "openfreemap": {
       "type": "vector",
       "tiles": [
-        "https://tiles.openfreemap.org/planet/{z}/{x}/{y}.pbf"
+        "https://tiles.openfreeap.org/planet/{z}/{x}/{y}.pbf"
       ],
       "attribution": "<a href=\"https://openfreemap.org\" target=\"_blank\">OpenFreeMap</a> <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">&copy; OpenStreetMap contributors</a>"
     }
