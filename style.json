@@ -7,8 +7,7 @@
       "type": "vector",
       "tiles": [
         "https://tiles.dbark.io/{z}/{x}/{y}.pbf"
-      ],
-      "maxzoom": 14
+      ]
     }
   },
   "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
