@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "name": "Mon Style Perso (Sans Contours)",
+  "name": "Mon Style Perso (Contours dynamiques)",
   "metadata": {},
   "sources": {
     "mymaptiles": {
@@ -67,6 +67,52 @@
       }
     },
     {
+      "id": "rues-locales-contour",
+      "type": "line",
+      "source": "mymaptiles",
+      "source-layer": "transportation",
+      "minzoom": 13,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "in",
+          "class",
+          "minor",
+          "street",
+          "residential",
+          "service"
+        ]
+      ],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(216, 214, 214, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          13,
+          2,
+          16,
+          12,
+          20,
+          28
+        ]
+      }
+    },
+    {
       "id": "rues-locales-remplissage",
       "type": "line",
       "source": "mymaptiles",
@@ -109,6 +155,66 @@
           10,
           20,
           24
+        ]
+      }
+    },
+    {
+      "id": "routes-principales-contour",
+      "type": "line",
+      "source": "mymaptiles",
+      "source-layer": "transportation",
+      "minzoom": 5,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "in",
+          "class",
+          "motorway",
+          "trunk",
+          "primary",
+          "secondary",
+          "tertiary"
+        ]
+      ],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(216, 214, 214, 1)",
+        "line-opacity": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          12,
+          1,
+          13,
+          0
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          1.5,
+          10,
+          6,
+          16,
+          26
         ]
       }
     },
