@@ -1,9 +1,9 @@
 {
   "version": 8,
-  "name": "Mon Style Perso (Routes Larges + Noms)",
+  "name": "Basic Ultra Simple",
   "metadata": {},
   "sources": {
-    "mymaptiles": {
+    "basic-source": {
       "type": "vector",
       "tiles": [
         "https://tiles.dbark.io/{z}/{x}/{y}.pbf"
@@ -13,65 +13,103 @@
   "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
   "layers": [
     {
-      "id": "bg",
+      "id": "background",
       "type": "background",
       "paint": {
-        "background-color": "rgba(228, 230, 236, 1)"
+        "background-color": "#f8f9fa"
       }
     },
     {
       "id": "water",
       "type": "fill",
-      "source": "mymaptiles",
+      "source": "basic-source",
       "source-layer": "water",
       "paint": {
-        "fill-color": "rgba(124, 211, 255, 1)"
+        "fill-color": "#a5d6f1"
       }
     },
     {
-      "id": "boundary",
-      "type": "line",
-      "source": "mymaptiles",
-      "source-layer": "boundary",
-      "paint": {
-        "line-color": "rgba(213, 205, 205, 1)"
-      }
-    },
-    {
-      "id": "building",
+      "id": "parks",
       "type": "fill",
-      "source": "mymaptiles",
-      "source-layer": "building",
+      "source": "basic-source",
+      "source-layer": "landcover",
+      "filter": ["==", "class", "grass"],
+      "paint": {
+        "fill-color": "#dbeebf",
+        "fill-opacity": 0.4
+      }
+    },
+    {
+      "id": "roads-minor",
+      "type": "line",
+      "source": "basic-source",
+      "source-layer": "transportation",
+      "minzoom": 12,
+      "filter": ["in", "class", "minor", "street", "service"],
       "layout": {
-        "visibility": "none"
+        "line-cap": "round",
+        "line-join": "round"
       },
       "paint": {
-        "fill-color": "rgba(205, 204, 204, 1)",
-        "fill-outline-color": "rgba(143, 58, 58, 1)"
+        "line-color": "#d1d5db",
+        "line-width": 1
       }
     },
     {
-      "id": "landcover-parks",
-      "type": "fill",
-      "source": "mymaptiles",
-      "source-layer": "landcover",
-      "filter": [
-        "==",
-        "class",
-        "grass"
-      ],
-      "paint": {
-        "fill-color": "#b6e3a1",
-        "fill-opacity": 0.5
-      }
-    },
-    {
-      "id": "routes-principales-contour",
+      "id": "roads-major",
       "type": "line",
-      "source": "mymaptiles",
+      "source": "basic-source",
       "source-layer": "transportation",
-      "minzoom": 5,
-      "filter": [
-        "all",
-        [
-          "==",
+      "filter": ["in", "class", "motorway", "trunk", "primary", "secondary", "tertiary"],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#9ca3af",
+        "line-width": [
+          "interpolate", ["linear"], ["zoom"],
+          5, 0.5,
+          12, 2,
+          18, 10
+        ]
+      }
+    },
+    {
+      "id": "place-names",
+      "type": "symbol",
+      "source": "basic-source",
+      "source-layer": "place",
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Open Sans Regular"],
+        "text-size": 14,
+        "text-max-width": 8
+      },
+      "paint": {
+        "text-color": "#4b5563",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "id": "street-names",
+      "type": "symbol",
+      "source": "basic-source",
+      "source-layer": "transportation_name",
+      "minzoom": 14,
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Open Sans Regular"],
+        "text-size": 12,
+        "symbol-placement": "line"
+      },
+      "paint": {
+        "text-color": "#6b7280",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1.5
+      }
+    }
+  ],
+  "id": "basic-style"
+}
